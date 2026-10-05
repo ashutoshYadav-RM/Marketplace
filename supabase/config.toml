@@ -1,0 +1,47 @@
+# Supabase CLI project config.
+# This file is hand-written (the CLI wasn't available in the scaffolding
+# environment) — running `supabase init` will not overwrite an existing
+# config.toml, so review against `supabase init --help` if the CLI complains
+# about a missing/renamed key after an upgrade.
+#
+# Local dev:   supabase start        (requires Docker)
+# Link once:   supabase link --project-ref <your-project-ref>
+# Push schema: supabase db push
+# Apply seed:  supabase db reset     (local only — re-runs migrations + seed.sql)
+
+project_id = "hyperlocal-commerce"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = false # flip on once an SMTP provider is configured
+
+[auth.sms]
+# Phone OTP is the primary customer sign-in (see blueprint §03).
+# Configure a real provider (Twilio, MessageBird, ...) before launch —
+# without one, signInWithOtp({ phone }) will not deliver an SMS.
+enable_signup = true
+
+[realtime]
+enabled = true

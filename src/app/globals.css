@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Semantic names only — components reach for
+ * `bg-surface` / `text-muted-foreground` / `text-accent-ready`, never a raw
+ * hex, so the three surfaces (customer/merchant/admin) can share one
+ * primitive layer. `accent-ready` is reserved for the pickup-ready signal
+ * specifically (see order state machine, blueprint §05) — it is not the
+ * general brand accent, so it stays legible as a status, not decoration.
+ */
+:root {
+  --background: #f6f8f7;
+  --foreground: #10181a;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --border: #e1e6e4;
+  --muted-foreground: #5b6664;
+
+  --brand: #0f6b5a;
+  --brand-foreground: #ffffff;
+  --brand-soft: #e3f1ec;
+
+  --accent-ready: #c9631a;
+  --accent-ready-soft: #fbebdc;
+
+  --success: #1f8a5f;
+  --success-soft: #e4f5ec;
+
+  --danger: #b23b3b;
+  --danger-soft: #fbe7e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0e1413;
+    --foreground: #edf2f0;
+    --surface: #161d1c;
+    --surface-raised: #1b2321;
+    --border: #29332f;
+    --muted-foreground: #8fa19d;
+
+    --brand: #39b79b;
+    --brand-foreground: #06231d;
+    --brand-soft: #123a31;
+
+    --accent-ready: #e8903e;
+    --accent-ready-soft: #3a2712;
+
+    --success: #3fcb8e;
+    --success-soft: #123423;
+
+    --danger: #e2726b;
+    --danger-soft: #3a1e1c;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+
+  --color-accent-ready: var(--accent-ready);
+  --color-accent-ready-soft: var(--accent-ready-soft);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-data);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+* {
+  border-color: var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
